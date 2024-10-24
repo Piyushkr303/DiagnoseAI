@@ -1,6 +1,6 @@
 import os
 import streamlit as st
-import fitz  # PyMuPDF for PDF reading
+import PyPDF2  # Replacing fitz with PyPDF2 for PDF reading
 from langchain import LLMChain
 from langchain.prompts import PromptTemplate
 from langchain_groq import ChatGroq
@@ -67,11 +67,11 @@ def update_history(history, new_message):
 
 # Function to extract text from uploaded PDF
 def extract_pdf_content(pdf_file):
-    doc = fitz.open(stream=pdf_file.read(), filetype="pdf")
+    reader = PyPDF2.PdfReader(pdf_file)
     content = ""
-    for page_num in range(doc.page_count):
-        page = doc[page_num]
-        content += page.get_text()
+    for page_num in range(len(reader.pages)):
+        page = reader.pages[page_num]
+        content += page.extract_text()
     return content
 
 # Fetch summaries from Wikipedia and arXiv
