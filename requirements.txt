@@ -1,3 +1,4 @@
+wikipedia
 langchain
 transformers
 sentence-transformers
@@ -5,5 +6,6 @@ streamlit
 torch
 PyPDF2
 langchain_groq
+arxiv
 langchain_community
 langchain_core
